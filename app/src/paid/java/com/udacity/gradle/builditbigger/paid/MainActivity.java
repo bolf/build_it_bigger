@@ -1,20 +1,19 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.builditbigger.paid;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.and.blf.androidlibrary.JokeActivity;
-import com.and.blf.javajokes.Joker;
+import com.udacity.gradle.builditbigger.EndpointsAsyncTask;
+import com.udacity.gradle.builditbigger.JokeRenderer;
+import com.udacity.gradle.builditbigger.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JokeRenderer {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         new EndpointsAsyncTask().execute(this);
     }
 
-    public void showJoke(String joke){
+    @Override
+    public void renderJoke(String joke) {
         Intent intnt = new Intent(this, JokeActivity.class);
         intnt.putExtra(JokeActivity.JOKE,joke);
         startActivity(intnt);
